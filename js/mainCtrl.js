@@ -14,7 +14,7 @@ angular.module('itunes').controller('mainCtrl', function($scope, itunesService){
         {field: 'Type', displayName: 'Type'},
         {field: 'CollectionPrice', displayName: 'Collection Price'},
         {field: 'Genre', displayName: 'Song Genre'},
-        {field: 'Country', displayName: 'Country'},
+        {field: 'Country', displayName: 'Country'}
       ],
       filterOptions: $scope.filterOptions
   };
@@ -34,8 +34,11 @@ angular.module('itunes').controller('mainCtrl', function($scope, itunesService){
 
     //Code here
 
-    $scope.getSongData = function(artist){
-      itunesService.getArtistData(artist).then(function(response){
+
+
+
+    $scope.getSongData = function(artist, searchOption){
+      itunesService.getArtistData(artist, searchOption).then(function(response){
         //console.log('this is response', response)
         $scope.songData = response;
       });
@@ -51,16 +54,50 @@ angular.module('itunes').controller('mainCtrl', function($scope, itunesService){
 
   //If everything worked you should see a huge array of objects inside your console. That's great! But unfortunately that's not what ng-grid is expecting. What you need to do now is sort the data you got back. This sounds like a great job for a service! Head back to your itunesService and complete the last instructions there.
 
+
+$scope.searchOptions = 'all';
+
 $scope.searchOptions = [
   {
     name: 'all',
     value: 'all'
   },
   {
-    name: 'TV show',
-    value: 'tv-episode'
+    name: 'movie',
+    value: 'movie'
+  },
+  {
+    name: 'podcast',
+    value: 'podcast'
+  },
+  {
+    name: 'music',
+    value: 'music'
+  },
+  {
+    name: 'music video',
+    value: 'musicVideo'
+  },
+  {
+    name: 'audio book',
+    value: 'audiobook'
+  },
+  {
+    name: 'short film',
+    value: 'shortFilm'
+  },
+  {
+    name: 'tv show',
+    value: 'tvShow'
+  },
+  {
+    name: 'software',
+    value: 'software'
+  },
+  {
+    name: 'e book',
+    value: 'ebook'
   }
-
 ];
 
 

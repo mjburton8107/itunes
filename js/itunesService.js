@@ -9,15 +9,13 @@ angular.module('itunes').service('itunesService', function($http, $q){
 
     //Code here
 
-    this.getArtistData = function(artist){
+    this.getArtistData = function(artist, media){
       var deferred = $q.defer();
       $http({
         method: 'JSONP',
-        url: 'https://itunes.apple.com/search?term=' + artist + '&callback=JSON_CALLBACK'
+        url: 'https://itunes.apple.com/search?term=' + artist + '&media' + media + '&callback=JSON_CALLBACK'
       }).then(function(response){
         var songs = response.data.results;
-        var newArray = [];
-        console.log('this is artist', artist)
 
         songs.forEach(function(song) {
           song.Artist = song.artistName,
